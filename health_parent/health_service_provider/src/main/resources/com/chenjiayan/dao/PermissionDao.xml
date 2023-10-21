@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenjiayan.dao.PermissionDao">
+    <sql id="permissionAll">
+        id,name,keyword,description
+    </sql>
+    <select id="findByRoleId" resultType="com.chenjiayan.pojo.Permission">
+        select <include refid="permissionAll"></include>
+        from t_permission p
+        inner join t_role_permission rp on rp.permission_id = p.id
+        where rp.role_id = #{roleId}
+    </select>
+</mapper>
